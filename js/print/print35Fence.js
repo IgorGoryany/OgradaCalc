@@ -51,7 +51,7 @@ export function print35Fence(
 		<span class="close"></span>
 		<div class="scheme">
 			${sizes}
-			<img alt="Ограда" src="./img/${image}.svg" />
+			<img alt="Ограда" src="${image}">
 			<span class="model">№&nbsp;${select.value}</span>
 		</div>
 	
