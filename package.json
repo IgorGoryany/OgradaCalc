@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html",
-    "predeploy": "npm run build",
+    "build": "parcel build index.html --out-dir=public",
+    "predeploy": "parcel build index.html --out-dir=public",
     "deploy": "vercel --prod",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
