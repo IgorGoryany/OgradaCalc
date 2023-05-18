@@ -27,8 +27,8 @@ export function calcLogicToSimpleFence(
 		sideX,
 		sideY,
 
-		gate1: lengthX >= 3400 ? sideX : lengthX - pillar * 3 - 25 - 500,
-		gate2: lengthX >= 3400 ? lengthX - pillar * 4 - 40 - 500 - sideX : false,
+		gate1: lengthX >= 3400 ? sideX : lengthX - pillar * 3 - 510,
+		gate2: lengthX >= 3400 ? lengthX - pillar * 4 - 525 - sideX : false,
 
 		insideSideX: sideX - tube,
 
