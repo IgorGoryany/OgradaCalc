@@ -47,8 +47,8 @@ import {handleCalcTotalDetailsList} from "./calc/handleCalcTotalDetailsList";
 		if (+sideXInput.value && +sideYInput.value) {
 			distributionLogic(+sideXInput.value, +sideYInput.value);
 
-			// sideXInput.value = '';
-			// sideYInput.value = '';
+			sideXInput.value = '';
+			sideYInput.value = '';
 		} else {
 			alert('Ты не все ввел!');
 		}
