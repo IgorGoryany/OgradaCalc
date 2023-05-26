@@ -47,12 +47,13 @@ export function calcLogicTo15And25Fence(pillar, tube, tubeInside, jumper, isBigX
 		rectangleSectionGate1:
 			gateCount
 				? false
-				: lengthX - pillar * 3 - 510 - sideXRectangle * rectangleGateCount - sideXJumper * rectangleGateCount,
+				: lengthX - pillar * 3 - 510 - sideXRectangle * rectangleGateCount - sideXJumper * (rectangleGateCount + 1),
 		rectangleInsideGate1: 500 - tube * 2 - sideXJumper,
 
 		rectangleSectionGate2:
 			gateCount
-				? lengthX - pillar * 4 - 525 - sideX - sideXRectangle * rectangleGateCount - sideXJumper * rectangleGateCount
+				? lengthX - pillar * 4 - 525 - sideX - sideXRectangle * rectangleGateCount - sideXJumper * 
+		(rectangleGateCount + 1)
 				: false,
 		rectangleInsideGate2:
 			gateCount ? 500 - tube * 2 - sideXJumper : false,
