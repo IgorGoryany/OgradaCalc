@@ -31,13 +31,8 @@ export function print15And25Fence({
 
 	const image = choosingImage();
 
-	let sizes = `<span class="top">${sideXInput.value}</span>
-<span class="left">${sideYInput.value}</span>`;
-
-	if (image === '2000X4000') {
-		sizes = `<span class="top">${sideYInput.value}</span>
-	<span class="left">${sideXInput.value}</span>`;
-	}
+	const sizes = sizesSupp(image);
+	
 	result.insertAdjacentHTML(
 		'afterbegin',
 
