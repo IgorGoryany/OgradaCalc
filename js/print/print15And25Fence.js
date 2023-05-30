@@ -2,6 +2,7 @@ import {choosingImage} from '../support/choosingImage';
 import {handleCloseResult} from '../support/handleCloseResult';
 import {result, select, sideXInput, sideYInput, total} from '../variables/variables';
 import {handleCalcTotalDetailsList} from "../calc/handleCalcTotalDetailsList";
+import {sizesSupp} from "../support/sizesSupp";
 
 export function print15And25Fence({
 	                                  sideX,
