@@ -1,7 +1,7 @@
 import {choosingImage} from '../support/choosingImage';
 import {handleCloseResult} from '../support/handleCloseResult';
-import {result, select, sideXInput, sideYInput, total} from '../variables/variables';
-import {handleCalcTotalDetailsList} from "../calc/handleCalcTotalDetailsList";
+import {result, select, total,} from '../variables/variables';
+import {handleCalcTotalDetailsList} from '../calc/handleCalcTotalDetailsList';
 import {sizesSupp} from "../support/sizesSupp";
 import {fenceSideChoose} from "../support/fenceSideChoose";
 
@@ -11,8 +11,10 @@ export function print15And25Fence({
 	                                  gate1,
 	                                  gate2,
 	                                  sideXRectangle,
+	                                  halfXRectangle,
 	                                  sideXJumper,
 	                                  sideYRectangle,
+	                                  halfYRectangle,
 	                                  sideYJumper,
 	                                  tube,
 	                                  tubeInside,
@@ -25,7 +27,7 @@ export function print15And25Fence({
 	                                  rectangleInsideGate1,
 	                                  rectangleSectionGate2,
 	                                  rectangleInsideGate2,
-	                                  rectangleGateCount
+	                                  rectangleGateCount,
                                   }) {
 	const number = document.getElementsByClassName('result')
 		? document.getElementsByClassName('result').length + 1
@@ -34,7 +36,7 @@ export function print15And25Fence({
 	const image = choosingImage();
 
 	const {sizes, isReverse} = sizesSupp(image);
-	
+
 	result.insertAdjacentHTML(
 		'afterbegin',
 
@@ -45,9 +47,7 @@ export function print15And25Fence({
 		<div class="scheme">
 			${sizes}
 			<img alt="Ограда" src="${image}" 
-			class="${fenceSideChoose() 
-				? isReverse ? 'reverseX' : 'reverse' 
-				: ''}" 
+			class="${fenceSideChoose(isReverse)}" 
 			/>
 			<span class="model">№&nbsp;${select.value}</span>
 		</div>
@@ -61,17 +61,37 @@ export function print15And25Fence({
 			</div>
 			<div class="inside">
 				<h2>${tubeInside} X ${tubeInside}</h2>
-				<div class="pattern${tubeInside}">${sideYRectangle} X ${rectangleCountY * 2 * countY * 2}</div>
-				<div class="pattern${tubeInside}">${sideYJumper} X ${(rectangleCountY + 1) * countY * 2}</div>
+				
+				<div class="pattern25">${sideYRectangle} X ${
+			rectangleCountY * 4 * countY
+		}</div>
+				
+				${halfYRectangle ? `<div class="pattern25 lol">${halfYRectangle} X 8</div>` : ''}
+				
+				<div class="pattern25">${sideYJumper} X ${
+			(rectangleCountY + 1) * countY * 2
+		}</div>
 				<br>
-				<div class="pattern${tubeInside}">${sideXRectangle} X ${rectangleCountX * 2 * (countX + gateCount) + rectangleGateCount * 2}</div>
-				<div class="pattern${tubeInside}">${sideXJumper} X ${(rectangleCountX + 1) * (countX + gateCount) + rectangleGateCount + 1}</div>
+				<div class="pattern25">${sideXRectangle} X ${
+			rectangleCountX * 2 * (countX + gateCount) + rectangleGateCount * 2
+		}</div>
+				
+				${halfXRectangle
+			? `<div class="pattern25">${halfXRectangle} X ${4 + (gateCount * 4)}</div>`
+			: ''} 
+				
+				<div class="pattern25">
+					${sideXJumper} X 
+					${(rectangleCountX + 1) * (countX + gateCount) + rectangleGateCount + 2}
+				</div> 
 				<br>
-				${rectangleSectionGate1
-			? `<div class="gateRectangle">${rectangleSectionGate1} X 2</div>
+				${
+			rectangleSectionGate1
+				? `<div class="gateRectangle">${rectangleSectionGate1} X 2</div>
 				<div>${rectangleInsideGate1} X 2</div>`
-			: `<div class="gateRectangle">${rectangleSectionGate2} X 2</div>
-				<div>${rectangleInsideGate2} X 2</div>`}
+				: `<div class="gateRectangle">${rectangleSectionGate2} X 2</div>
+				<div>${rectangleInsideGate2} X 2</div>`
+		}
 			</div>
 		</div>
 	</div>

@@ -1,31 +1,30 @@
 import {choosingImage} from '../support/choosingImage';
 import {handleCloseResult} from '../support/handleCloseResult';
-import {result, select, sideXInput, sideYInput, total} from '../variables/variables';
-import {handleCalcTotalDetailsList} from "../calc/handleCalcTotalDetailsList";
+import {result, select, sideXInput, total,} from '../variables/variables';
+import {handleCalcTotalDetailsList} from '../calc/handleCalcTotalDetailsList';
 import {sizesSupp} from "../support/sizesSupp";
-import { fenceSideChoose } from "../support/fenceSideChoose";
+import {fenceSideChoose} from "../support/fenceSideChoose";
 
-export function print35Fence(
-	{
-		sideX,
-		sideY,
+export function print35Fence({
+	                             sideX,
+	                             sideY,
 
-		gate1,
-		gate2,
+	                             gate1,
+	                             gate2,
 
-		insideSideX,
+	                             insideSideX,
 
-		insideSideY,
+	                             insideSideY,
 
-		insideGate1,
-		insideGate2,
+	                             insideGate1,
+	                             insideGate2,
 
-		tube,
-		tubeInside,
+	                             tube,
+	                             tubeInside,
 
-		countX,
-		countY,
-	}) {
+	                             countX,
+	                             countY,
+                             }) {
 	const number = document.getElementsByClassName('result')
 		? document.getElementsByClassName('result').length + 1
 		: 1;
@@ -49,9 +48,7 @@ export function print35Fence(
 		<div class="scheme">
 			${sizes}
 			<img alt="Ограда" src="${image}" 
-			class="${fenceSideChoose() 
-				? isReverse ? 'reverseX' : 'reverse' 
-				: ''}" 
+			class="${fenceSideChoose(isReverse)}" 
 			/>
 			<span class="model">№&nbsp;${select.value}</span>
 		</div>

@@ -1,9 +1,9 @@
 import {choosingImage} from '../support/choosingImage';
 import {handleCloseResult} from '../support/handleCloseResult';
-import {result, select, sideXInput, sideYInput, total} from '../variables/variables';
+import {result, select, total} from '../variables/variables';
 import {handleCalcTotalDetailsList} from '../calc/handleCalcTotalDetailsList';
 import {sizesSupp} from "../support/sizesSupp";
-import { fenceSideChoose } from "../support/fenceSideChoose";
+import {fenceSideChoose} from "../support/fenceSideChoose";
 
 export function print5Fence({
 	                            insideSideX,
@@ -35,9 +35,7 @@ export function print5Fence({
 		<div class="scheme">
 			${sizes}
 			<img alt="Ограда" src="${image}" 
-			class="${fenceSideChoose() 
-				? isReverse ? 'reverseX' : 'reverse' 
-				: ''}" 
+			class="${fenceSideChoose(isReverse)}" 
 			/>
 			<span class="model">№&nbsp${select.value}</span>
 		</div>
