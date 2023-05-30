@@ -3,6 +3,7 @@ import {handleCloseResult} from '../support/handleCloseResult';
 import {result, select, sideXInput, sideYInput, total} from '../variables/variables';
 import {handleCalcTotalDetailsList} from "../calc/handleCalcTotalDetailsList";
 import {sizesSupp} from "../support/sizesSupp";
+import { fenceSideChoose } from "../support/fenceSideChoose";
 
 export function print35Fence(
 	{
@@ -47,7 +48,7 @@ export function print35Fence(
 		<span class="close"></span>
 		<div class="scheme">
 			${sizes}
-			<img alt="Ограда" src="${image}">
+			<img alt="Ограда" src="${image}" class="${fenceSideChoose() ? 'reverse' : ''}" />
 			<span class="model">№&nbsp;${select.value}</span>
 		</div>
 	
