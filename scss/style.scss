@@ -228,6 +228,10 @@ h1 {
 		transform: rotateY(180deg);
 	}
 
+	.reverseX {
+		transform: rotateX(180deg);
+	}
+
 	.model {
 		padding: 20px 0 0 15px;
 		font-size: 2rem;

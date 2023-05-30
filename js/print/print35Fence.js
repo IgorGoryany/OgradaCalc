@@ -32,7 +32,7 @@ export function print35Fence(
 
 	const image = choosingImage();
 
-	const sizes = sizesSupp(image);
+	const {sizes, isReverse} = sizesSupp(image);
 
 	let dop460 = 1;
 	if (+sideXInput.value >= 3400) {
@@ -48,7 +48,11 @@ export function print35Fence(
 		<span class="close"></span>
 		<div class="scheme">
 			${sizes}
-			<img alt="Ограда" src="${image}" class="${fenceSideChoose() ? 'reverse' : ''}" />
+			<img alt="Ограда" src="${image}" 
+			class="${fenceSideChoose() 
+				? isReverse ? 'reverseX' : 'reverse' 
+				: ''}" 
+			/>
 			<span class="model">№&nbsp;${select.value}</span>
 		</div>
 	
