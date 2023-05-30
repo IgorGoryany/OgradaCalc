@@ -2,6 +2,7 @@ import { choosingImage } from '../support/choosingImage';
 import { handleCloseResult } from '../support/handleCloseResult';
 import { sideXInput, sideYInput, total, select, result } from '../variables/variables';
 import {handleCalcTotalDetailsList} from "../calc/handleCalcTotalDetailsList";
+import {sizesSupp} from "../support/sizesSupp";
 
 export function printFrameFence({
 	sideX,
@@ -21,14 +22,8 @@ export function printFrameFence({
 
 	const image = choosingImage();
 
-	let sizes = `<span class="top">${sideXInput.value}</span>
-<span class="left">${sideYInput.value}</span>`;
-
-	if (image === '2000X4000') {
-		sizes = `<span class="top">${sideYInput.value}</span>
-	<span class="left">${sideXInput.value}</span>`;
-	}
-
+	const sizes = sizesSupp(image);
+	
 	result.insertAdjacentHTML(
 		'afterbegin',
 
