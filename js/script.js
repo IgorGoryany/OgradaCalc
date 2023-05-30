@@ -14,6 +14,11 @@ import {handleCalcTotalDetailsList} from "./calc/handleCalcTotalDetailsList";
 	sideXInput.addEventListener('keypress', handlePress);
 	sideYInput.addEventListener('keypress', handlePress);
 	totalCalc.addEventListener('click', handleTotalCalc);
+	document.getElementById('leftFence').addEventListener('click', handleLeftFence)
+
+	function handleLeftFence(e) {
+		e.target.children[0].classList.toggle('active')
+	}
 
 	function handleTotalCalc(e) {
 		e.target.classList.toggle('active');
