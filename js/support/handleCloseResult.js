@@ -1,4 +1,6 @@
-import { total, totalCalc } from '../variables/variables';
+import {result, total, totalCalc} from '../variables/variables';
+import {handleCalcTotalDetailsList} from "../calc/handleCalcTotalDetailsList";
+
 function handleCloseResult() {
 	this.removeEventListener('click', handleCloseResult);
 
@@ -23,4 +25,5 @@ function renameNumber() {
 		numberItems[i].innerText = `${numberItems.length - i}.`;
 	}
 }
-export { handleCloseResult };
+
+export {handleCloseResult};

@@ -62,35 +62,35 @@ export function print15And25Fence({
 			<div class="inside">
 				<h2>${tubeInside} X ${tubeInside}</h2>
 				
-				<div class="pattern25">${sideYRectangle} X ${
+				<div class="pattern${tubeInside}">${sideYRectangle} X ${
 			rectangleCountY * 4 * countY
 		}</div>
 				
-				${halfYRectangle ? `<div class="pattern25 lol">${halfYRectangle} X 8</div>` : ''}
+				${halfYRectangle ? `<div class="pattern${tubeInside}">${halfYRectangle} X 8</div>` : ''}
 				
-				<div class="pattern25">${sideYJumper} X ${
+				<div class="pattern${tubeInside}">${sideYJumper} X ${
 			(rectangleCountY + 1) * countY * 2
 		}</div>
 				<br>
-				<div class="pattern25">${sideXRectangle} X ${
+				<div class="pattern${tubeInside}">${sideXRectangle} X ${
 			rectangleCountX * 2 * (countX + gateCount) + rectangleGateCount * 2
 		}</div>
 				
 				${halfXRectangle
-			? `<div class="pattern25">${halfXRectangle} X ${4 + (gateCount * 4)}</div>`
+			? `<div class="pattern${tubeInside}">${halfXRectangle} X ${4 + (gateCount * 4)}</div>`
 			: ''} 
 				
-				<div class="pattern25">
+				<div class="pattern${tubeInside}">
 					${sideXJumper} X 
 					${(rectangleCountX + 1) * (countX + gateCount) + rectangleGateCount + 2}
 				</div> 
 				<br>
 				${
 			rectangleSectionGate1
-				? `<div class="gateRectangle">${rectangleSectionGate1} X 2</div>
-				<div>${rectangleInsideGate1} X 2</div>`
-				: `<div class="gateRectangle">${rectangleSectionGate2} X 2</div>
-				<div>${rectangleInsideGate2} X 2</div>`
+				? `<div class="gateRectangle pattern${tubeInside}">${rectangleSectionGate1} X 2</div>
+				<div class="pattern${tubeInside}">${rectangleInsideGate1} X 2</div>`
+				: `<div class="gateRectangle pattern${tubeInside}">${rectangleSectionGate2} X 2</div>
+				<div class="pattern${tubeInside}">${rectangleInsideGate2} X 2</div>`
 		}
 			</div>
 		</div>
