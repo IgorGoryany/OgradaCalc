@@ -96,10 +96,14 @@ function insideCalcLogic(length, tube, jumper, isBig) {
 	let rectangleCount = 2;
 
 	if (length < 1665 && isBig) {
-		const bla = supportInsideCalcLogic(length, tube, jumper, standardRectangle)
-		console.log(bla)
-		return bla
+		return supportInsideCalcLogic(length, tube, jumper, standardRectangle)
+	
 	}
+
+	if (length <= 1540 && !isBig) {
+		return [length - tube - 2 * jumper, jumper, 1]
+	}
+
 	if (length >= 2800) {
 		rectangleCount = 3
 	}
