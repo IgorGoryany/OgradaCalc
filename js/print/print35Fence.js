@@ -13,8 +13,10 @@ export function print35Fence({
 	                             gate2,
 
 	                             insideSideX,
+								 insideSideXCount,
 
 	                             insideSideY,
+								 insideSideYCount,
 
 	                             insideGate1,
 	                             insideGate2,
@@ -64,12 +66,9 @@ export function print35Fence({
 
 			<div class="inside">
 				<h2>${tubeInside} X ${tubeInside}</h2>
-				<div class="pattern${tubeInside}">${insideSideY} X ${4 * countY}</div>
-				<div class="pattern${tubeInside}">${insideSideX} X ${2 * countX}</div>
+				<div class="pattern${tubeInside}">${insideSideY} X ${4 * countY * insideSideYCount}</div>
+				<div class="pattern${tubeInside}">${insideSideX} X ${2 * countX * insideSideXCount}</div>
 				<div class="pattern${tubeInside}">${insideGate1} X 2</div>
-				<div class="pattern${tubeInside}">460 X ${
-			2 * countX + 4 * countY + dop460
-		}</div>
 				${
 			insideGate2
 				? `<div class="pattern${tubeInside}">${insideGate2} X 2</div>`
