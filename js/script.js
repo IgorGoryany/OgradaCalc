@@ -14,8 +14,8 @@ import { handleCalcTotalDetailsList } from './calc/handleCalcTotalDetailsList';
 import { jsPDFPrint } from './js-pdf/jsPDF';
 
 (function () {
-	sideXInput.value = 3200;
-	sideYInput.value = 2000;
+	// sideXInput.value = 3200;
+	// sideYInput.value = 2000;
 
 	jsDoc.addEventListener('click', jsPDFPrint);
 
@@ -66,8 +66,8 @@ import { jsPDFPrint } from './js-pdf/jsPDF';
 		if (+sideXInput.value && +sideYInput.value) {
 			distributionLogic(+sideXInput.value, +sideYInput.value);
 
-			// sideXInput.value = '';
-			// sideYInput.value = '';
+			sideXInput.value = '';
+			sideYInput.value = '';
 		} else {
 			alert('Ты не все ввел!');
 		}
