@@ -5,3 +5,4 @@ export const select = document.getElementById('select');
 export const result = document.getElementById('result');
 export const total = document.getElementById('total');
 export const totalCalc = document.getElementById('total-calc');
+export const jsDoc = document.getElementById('js-doc');

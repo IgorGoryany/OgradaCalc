@@ -1,29 +1,29 @@
-import {choosingImage} from '../support/choosingImage';
-import {handleCloseResult} from '../support/handleCloseResult';
-import {result, select, total,} from '../variables/variables';
-import {handleCalcTotalDetailsList} from '../calc/handleCalcTotalDetailsList';
-import {sizesSupp} from "../support/sizesSupp";
-import {fenceSideChoose} from "../support/fenceSideChoose";
+import { choosingImage } from '../support/choosingImage';
+import { handleCloseResult } from '../support/handleCloseResult';
+import { result, select, total } from '../variables/variables';
+import { handleCalcTotalDetailsList } from '../calc/handleCalcTotalDetailsList';
+import { sizesSupp } from '../support/sizesSupp';
+import { fenceSideChoose } from '../support/fenceSideChoose';
 
 export function printFrameFence({
-	                                sideX,
-	                                sideY,
+	sideX,
+	sideY,
 
-	                                gate1,
-	                                gate2,
+	gate1,
+	gate2,
 
-	                                tube,
+	tube,
 
-	                                countX,
-	                                countY,
-                                }) {
+	countX,
+	countY,
+}) {
 	const number = document.getElementsByClassName('result')
 		? document.getElementsByClassName('result').length + 1
 		: 1;
 
 	const image = choosingImage();
 
-	const {sizes, isReverse} = sizesSupp(image);
+	const { sizes, isReverse } = sizesSupp(image);
 
 	result.insertAdjacentHTML(
 		'afterbegin',

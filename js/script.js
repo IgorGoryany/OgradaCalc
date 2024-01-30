@@ -1,11 +1,23 @@
 'strict mode';
-import {calc, select, sideXInput, sideYInput, total, totalCalc} from './variables/variables';
-import {distributionLogic} from './distribution/distributionLogic';
-import {handleCalcTotalDetailsList} from "./calc/handleCalcTotalDetailsList";
+
+import {
+	calc,
+	select,
+	sideXInput,
+	sideYInput,
+	total,
+	totalCalc,
+	jsDoc,
+} from './variables/variables';
+import { distributionLogic } from './distribution/distributionLogic';
+import { handleCalcTotalDetailsList } from './calc/handleCalcTotalDetailsList';
+import { jsPDFPrint } from './js-pdf/jsPDF';
 
 (function () {
-	// sideXInput.value = 3200;
-	// sideYInput.value = 2000;
+	sideXInput.value = 3200;
+	sideYInput.value = 2000;
+
+	jsDoc.addEventListener('click', jsPDFPrint);
 
 	document.getElementById('date').innerText = String(new Date().getFullYear());
 
@@ -14,10 +26,12 @@ import {handleCalcTotalDetailsList} from "./calc/handleCalcTotalDetailsList";
 	sideXInput.addEventListener('keypress', handlePress);
 	sideYInput.addEventListener('keypress', handlePress);
 	totalCalc.addEventListener('click', handleTotalCalc);
-	document.getElementById('leftFence').addEventListener('click', handleLeftFence)
+	document
+		.getElementById('leftFence')
+		.addEventListener('click', handleLeftFence);
 
 	function handleLeftFence(e) {
-		e.target.children[0].classList.toggle('active')
+		e.target.children[0].classList.toggle('active');
 	}
 
 	function handleTotalCalc(e) {
@@ -52,8 +66,8 @@ import {handleCalcTotalDetailsList} from "./calc/handleCalcTotalDetailsList";
 		if (+sideXInput.value && +sideYInput.value) {
 			distributionLogic(+sideXInput.value, +sideYInput.value);
 
-			sideXInput.value = '';
-			sideYInput.value = '';
+			// sideXInput.value = '';
+			// sideYInput.value = '';
 		} else {
 			alert('Ты не все ввел!');
 		}
