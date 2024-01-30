@@ -18,7 +18,7 @@ export const jsPDFPrint = () => {
 
 	result.forEach((container, indexOfContainer) => {
 		const [number, , schemeBlock, valuesBlock] = container.children;
-		const [numberTop, numberLeft, image] = schemeBlock.children;
+		const [numberTop, numberLeft, image, fenceModel] = schemeBlock.children;
 		const [outsideValuesBlock, insideValueBlock] = valuesBlock.children;
 
 		const isNewPage = !(indexOfContainer % 4) && indexOfContainer !== 0;
@@ -59,9 +59,22 @@ export const jsPDFPrint = () => {
 				left: image.offsetLeft + startLeftPadding + schemeBlock.offsetLeft,
 				top:
 					image.offsetTop +
-					startLeftPadding +
+					startTopPadding +
 					schemeBlock.offsetTop +
 					prevContainersHeigh,
+			},
+			schemeBlockFenceModel: {
+				left:
+					fenceModel.offsetLeft +
+					startLeftPadding +
+					schemeBlock.offsetLeft -
+					150,
+				top:
+					fenceModel.offsetTop +
+					startTopPadding +
+					schemeBlock.offsetTop +
+					prevContainersHeigh +
+					100,
 			},
 			outsideValues: outsideValuesNode.map((valueNode) => ({
 				left:
@@ -106,12 +119,18 @@ export const jsPDFPrint = () => {
 			convertIntoMM(offsets.schemeBlockTopNumber.top)
 		);
 
-		console.log(
-			convertIntoMM(offsets.schemeBlockImage.left),
-			convertIntoMM(offsets.schemeBlockImage.top),
-			convertIntoMM(image.offsetHeight),
-			convertIntoMM(image.offsetWidth)
+		doc.text(
+			fenceModel.innerText,
+			convertIntoMM(offsets.schemeBlockFenceModel.left),
+			convertIntoMM(offsets.schemeBlockFenceModel.top)
 		);
+
+		// console.log(
+		// 	convertIntoMM(offsets.schemeBlockImage.left),
+		// 	convertIntoMM(offsets.schemeBlockImage.top),
+		// 	convertIntoMM(image.offsetHeight),
+		// 	convertIntoMM(image.offsetWidth)
+		// );
 
 		// doc.addImage(
 		// 	choosingImageForPDF(+numberTop.innerText, +numberLeft.innerText),
