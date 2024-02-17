@@ -150,7 +150,7 @@ export const Fence15And25 = memo(function Fence15And25(
         )}
 
         <Text size="lg">
-          {sideXJumper} X
+          {sideXJumper} X{' '}
           {(rectangleCountX + 1) * (countX + gateCount) +
             rectangleGateCount +
             2}
