@@ -85,8 +85,8 @@ export const CalcForm = (props: CalcFormProps) => {
     }
 
     setErrors({ widthInput: false, heightInput: false, modelSelect: false });
-    // widthInput.onChange('');
-    // heightInput.onChange('');
+    widthInput.onChange('');
+    heightInput.onChange('');
     setFenceValues?.([
       ...fenceValues,
       { fenceModel, sizeX, sizeY, isLeft, id: Date.now() },
