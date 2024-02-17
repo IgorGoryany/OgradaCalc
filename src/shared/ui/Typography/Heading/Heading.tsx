@@ -36,7 +36,7 @@ export const Heading: FC<HeadingProps> = memo(function Heading(props) {
         style.heading,
         style[like],
         grandStyles[align],
-        { [generalStyles.underline]: underline },
+        { [generalStyles.underlined]: underline },
         className,
       )}
     >

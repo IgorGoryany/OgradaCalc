@@ -2,7 +2,7 @@ import { useCallback, useContext, useState } from 'react';
 
 import { maxSideLength } from '@/shared/consts';
 import type { FenceModels } from '@/shared/helpers';
-import { FenceContext, cn } from '@/shared/helpers';
+import { FenceContext } from '@/shared/helpers';
 import { useInput } from '@/shared/hooks';
 import type { Options } from '@/shared/ui';
 import { Button, HStack, Select, VStack, Input, Flex } from '@/shared/ui';
@@ -127,13 +127,7 @@ export const CalcForm = (props: CalcFormProps) => {
 
       <VStack gap="8">
         <HStack max className="btn-container" gap="8">
-          <Button
-            max
-            className={cn({ [style.active]: isTotalDetailsListVisible })}
-            id="total-calc"
-            variant="gray"
-            onClick={toggleVisibility}
-          >
+          <Button max id="total-calc" variant="gray" onClick={toggleVisibility}>
             {isTotalDetailsListVisible ? 'Свернуть' : 'Список деталей'}
           </Button>
           <Button max id="leftFence" onClick={onToggleLeft}>

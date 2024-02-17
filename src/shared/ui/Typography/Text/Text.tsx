@@ -42,7 +42,7 @@ export const Text: FC<TextProps> = memo(function Text(props) {
         style.text,
         grandStyles[align],
         style[size],
-        { [style.bold]: bold, [generalStyles.underline]: underline },
+        { [style.bold]: bold, [generalStyles.underlined]: underline },
         style[color],
         className,
       )}
