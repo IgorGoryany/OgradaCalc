@@ -1,0 +1,36 @@
+.text {
+}
+
+.primary {
+  color: var(--font-color);
+}
+
+.secondary {
+  color: var(--model-color);
+}
+
+.sm {
+  font-size: 12px;
+}
+
+.md {
+  font-size: 16px;
+}
+
+.lg {
+  font-size: 1.6rem;
+  @media (max-width: 702px) {
+    font-size: 1.3rem;
+  }
+}
+
+.vlg {
+  font-size: 2.5rem;
+  @media (max-width: 702px) {
+    font-size: 2rem;
+  }
+}
+
+.bold {
+  font-weight: 600;
+}

@@ -1,0 +1,126 @@
+@import "./app/styles/MU.scss";
+@import "./app/styles/zero.scss";
+@import "./app/styles/media.scss";
+
+:root {
+  --btn-gray-color: #484848;
+  --main-background-color: #161616;
+  --hr-color: #5c5c5c;
+  --btn-red-color: #a62f2f;
+  --btn-hover-color: #5c1010;
+  --btn-active-color: #222222;
+  --footer-bg-color: #131111;
+  --model-color: #f35050;
+  --font-color: white;
+  --btn-second-gray-color: #cbcbcb;
+  --input-font-size: 1.35rem;
+}
+
+body {
+  overflow-y: scroll;
+  background-color: var(--main-background-color);
+  font-family: Arial, Helvetica, sans-serif;
+  padding-top: 90px;
+  color: var(--font-color);
+  width: 100%;
+  min-height: 100%;
+}
+
+#root {
+  width: 100%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.scheme {
+  width: 350px;
+  display: flex;
+  left: 150px;
+  position: relative;
+
+  img {
+    width: 90%;
+  }
+
+  .reverse {
+    transform: rotateY(180deg);
+  }
+
+  .reverseX {
+    transform: rotateX(180deg);
+  }
+
+  // .model {
+  //   padding: 20px 0 0 15px;
+  //   font-size: 2rem;
+  //   color: var(--model-color);
+  // }
+
+  .top {
+    position: absolute;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-120%);
+    color: var(--font-color);
+    font-size: 1.8rem;
+  }
+
+  .left {
+    color: var(--font-color);
+    position: absolute;
+    transform: rotate(-90deg) translateX(50%);
+    top: 50%;
+
+    left: -55px;
+    font-size: 1.8rem;
+  }
+
+  @media (max-width: 861px) {
+    width: 250px;
+    display: block;
+  }
+
+  @media (max-width: 741px) {
+    width: 170px;
+    display: block;
+    left: 100px;
+    .number {
+      left: -100px;
+    }
+  }
+}
+
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.number {
+  position: absolute;
+  font-size: 3rem;
+  font-weight: 600;
+  top: 0;
+  left: 0;
+}
+
+.outside {
+  padding: 0px 70px 0px 0px;
+}
+
+.inside {
+  position: relative;
+}
+
+hr {
+  display: block;
+  width: 100%;
+  height: 1px;
+  background-color: var(--hr-color);
+  margin-bottom: 65px;
+}
+
+#result {
+  margin-top: 90px;
+}

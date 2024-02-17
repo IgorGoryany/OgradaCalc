@@ -1,0 +1,16 @@
+.container {
+  flex: 1 1 auto;
+}
+
+.footer {
+  min-width: 100%;
+  min-height: 120px;
+  background-color: var(--footer-bg-color);
+  padding: 55px 0px 0px 20px;
+  font-size: 1.3rem;
+
+  h3 {
+    max-width: fit-content;
+    margin-left: auto;
+  }
+}
