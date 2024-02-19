@@ -1,10 +1,8 @@
-// import { PDFViewer } from '@react-pdf/renderer';
 import { useCallback, useEffect, useState } from 'react';
 
 import { LayoutPdf } from '@/entities/pdf';
 import { CalcForm } from '@/features/CalcForm';
 import { TotalDetailsList } from '@/features/TotalDetailsList';
-// import { MyDocument } from '@/pdf/TestDocument';
 import { cn } from '@/shared/helpers';
 import { useDebounce } from '@/shared/hooks';
 import { BackSVG } from '@/shared/img/RFCIcon/BackSVG';
@@ -14,8 +12,6 @@ import { FenceList } from '@/widgets/FenceList';
 import { Footer } from '@/widgets/Footer';
 
 import style from './styles/App.module.scss';
-// import { useState } from "react";
-// import { Button } from "@/shared/ui";
 
 const App = () => {
   const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
@@ -27,8 +23,12 @@ const App = () => {
     setIsTotalDetailsListVisible((prev) => !prev);
   }, []);
 
-  const togglePdfVisibility = useCallback(() => {
-    setIsPdfVisible((prev) => !prev);
+  const onHidePdf = useCallback(() => {
+    setIsPdfVisible(false);
+  }, []);
+
+  const onShowPdf = useCallback(() => {
+    setIsPdfVisible(true);
   }, []);
 
   const resizeEventHandler = useDebounce((event: UIEvent) => {
@@ -53,7 +53,7 @@ const App = () => {
           className={style.pdfButton}
           rightIcon={<BackSVG className={style.back} />}
           variant="secondGray"
-          onClick={togglePdfVisibility}
+          onClick={onHidePdf}
         />
         <LayoutPdf />
       </Container>
@@ -71,7 +71,7 @@ const App = () => {
             className={style.pdfButton}
             rightIcon={<DownloadSVG />}
             variant="secondGray"
-            onClick={togglePdfVisibility}
+            onClick={onShowPdf}
           >
             pdf
           </Button>

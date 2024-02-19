@@ -60,15 +60,6 @@ export const Sizes = (props: SizesProps) => {
 
   return isReverse ? (
     <View style={styles.sizesSection}>
-      <Text style={styles.rotatedText}>{sideY}</Text>
-      <View style={styles.imageWrapper}>
-        <Text>{sideX}</Text>
-        <Image src={image} style={imageStyle} />
-      </View>
-      <Text>N_{model}</Text>
-    </View>
-  ) : (
-    <View style={styles.sizesSection}>
       <Text style={styles.rotatedText}>{sideX}</Text>
       <View style={styles.imageWrapper}>
         <Text>{sideY}</Text>
@@ -76,12 +67,14 @@ export const Sizes = (props: SizesProps) => {
       </View>
       <Text>N_{model}</Text>
     </View>
+  ) : (
+    <View style={styles.sizesSection}>
+      <Text style={styles.rotatedText}>{sideY}</Text>
+      <View style={styles.imageWrapper}>
+        <Text>{sideX}</Text>
+        <Image src={image} style={imageStyle} />
+      </View>
+      <Text>N_{model}</Text>
+    </View>
   );
 };
-/* <View style={styles.sizesSection}>
-      <Text style={styles.rotatedText}>2000</Text>
-      <View>
-        <Text>2500</Text>
-        <Image src={img} style={styles.image} />
-      </View>
-    </View> */

@@ -8,6 +8,7 @@ import {
   FrameFence,
   SimpleFence,
 } from '@/entities/Fence';
+import type { AllFenceSizes, FenceModels, FenceValues } from '@/shared/helpers';
 import {
   FenceContext,
   choosingImage,
@@ -18,7 +19,7 @@ interface FenceListProps {
   isMobile: boolean;
 }
 
-export const FenceList = memo(function FenceList(props: FenceListProps) {
+export const FenceListComponent = (props: FenceListProps) => {
   const { isMobile } = props;
   const { fenceValues, setFenceValues } = useContext(FenceContext);
 
@@ -29,106 +30,52 @@ export const FenceList = memo(function FenceList(props: FenceListProps) {
     [fenceValues, setFenceValues],
   );
 
-  const fences = fenceValues.map((fence, index) => {
-    const image = choosingImage(fence.sizeX, fence.sizeY);
-    const fenceSizes = distributionLogic(
-      fence.fenceModel,
-      fence.sizeX,
-      fence.sizeY,
-    );
+  const getFenceComponent = (
+    fenceSizes: AllFenceSizes,
+    fenceModel: FenceModels,
+  ) => {
+    if (fenceModel === 5 && fenceSizes.fenceVariant === 'ModelSimple') {
+      return <Fence5 {...fenceSizes} />;
+    }
+    switch (fenceSizes.fenceVariant) {
+      case 'ModelSimple':
+        return <SimpleFence {...fenceSizes} />;
+      case 'Model35':
+        return <Fence35 {...fenceSizes} />;
+      case 'Model15And25':
+        return <Fence15And25 {...fenceSizes} />;
+      default:
+        return <FrameFence {...fenceSizes} />;
+    }
+  };
 
-    if (fenceSizes.fenceVariant === 'ModelSimple' && fence.fenceModel === 5) {
-      return (
-        <FenceLayout
-          key={fence.id}
-          id={fence.id}
-          image={image}
-          isLeft={fence.isLeft}
-          isMobile={isMobile}
-          lengthX={fence.sizeX}
-          lengthY={fence.sizeY}
-          model={fence.fenceModel}
-          number={index + 1}
-          onDelete={onDelete}
-        >
-          <Fence5 {...fenceSizes} />
-        </FenceLayout>
-      );
-    }
-
-    if (fenceSizes.fenceVariant === 'ModelSimple') {
-      return (
-        <FenceLayout
-          key={fence.id}
-          id={fence.id}
-          image={image}
-          isLeft={fence.isLeft}
-          isMobile={isMobile}
-          lengthX={fence.sizeX}
-          lengthY={fence.sizeY}
-          model={fence.fenceModel}
-          number={index + 1}
-          onDelete={onDelete}
-        >
-          <SimpleFence {...fenceSizes} />
-        </FenceLayout>
-      );
-    }
-    if (fenceSizes.fenceVariant === 'Model35') {
-      return (
-        <FenceLayout
-          key={fence.id}
-          id={fence.id}
-          image={image}
-          isLeft={fence.isLeft}
-          isMobile={isMobile}
-          lengthX={fence.sizeX}
-          lengthY={fence.sizeY}
-          model={fence.fenceModel}
-          number={index + 1}
-          onDelete={onDelete}
-        >
-          <Fence35 {...fenceSizes} />
-        </FenceLayout>
-      );
-    }
-    if (fenceSizes.fenceVariant === 'Model15And25') {
-      return (
-        <FenceLayout
-          key={fence.id}
-          id={fence.id}
-          image={image}
-          isLeft={fence.isLeft}
-          isMobile={isMobile}
-          lengthX={fence.sizeX}
-          lengthY={fence.sizeY}
-          model={fence.fenceModel}
-          number={index + 1}
-          onDelete={onDelete}
-        >
-          <Fence15And25 {...fenceSizes} />
-        </FenceLayout>
-      );
-    }
+  const renderFence = (fence: FenceValues, index: number) => {
+    const { sizeX, sizeY, isLeft, fenceModel, id } = fence;
+    const image = choosingImage(sizeX, sizeY);
+    const fenceSizes = distributionLogic(fenceModel, sizeX, sizeY);
     return (
       <FenceLayout
-        key={fence.id}
-        id={fence.id}
+        key={id}
+        id={id}
         image={image}
-        isLeft={fence.isLeft}
+        isLeft={isLeft}
         isMobile={isMobile}
-        lengthX={fence.sizeX}
-        lengthY={fence.sizeY}
-        model={fence.fenceModel}
+        lengthX={sizeX}
+        lengthY={sizeY}
+        model={fenceModel}
         number={index + 1}
         onDelete={onDelete}
       >
-        <FrameFence {...fenceSizes} />
+        {getFenceComponent(fenceSizes, fenceModel)}
       </FenceLayout>
     );
-  });
+  };
+
+  const fences = fenceValues.map(renderFence);
 
   fences.reverse();
 
   return <div id="result">{fences}</div>;
-});
+};
+
+export const FenceList = memo(FenceListComponent);

@@ -1,4 +1,4 @@
-import type { FenceValues } from '@/shared/helpers';
+import type { AllFenceSizes, FenceModels, FenceValues } from '@/shared/helpers';
 import { distributionLogic } from '@/shared/helpers';
 import { choosingImageForPDF } from '@/shared/helpers/support/choosingImageForPDF';
 
@@ -18,84 +18,44 @@ interface FenceListProps {
 export const FenceList = (props: FenceListProps) => {
   const { fenceValues } = props;
 
-  const fences = fenceValues.map((fence) => {
-    const image = choosingImageForPDF(fence.sizeX, fence.sizeY, fence.isLeft);
-    const fenceSizes = distributionLogic(
-      fence.fenceModel,
-      fence.sizeX,
-      fence.sizeY,
-    );
+  const getFenceComponent = (
+    fenceSizes: AllFenceSizes,
+    fenceModel: FenceModels,
+  ) => {
+    if (fenceModel === 5 && fenceSizes.fenceVariant === 'ModelSimple') {
+      return <Fence5 {...fenceSizes} />;
+    }
+    switch (fenceSizes.fenceVariant) {
+      case 'ModelSimple':
+        return <SimpleFence {...fenceSizes} />;
+      case 'Model35':
+        return <Fence35 {...fenceSizes} />;
+      case 'Model15And25':
+        return <Fence15And25 {...fenceSizes} />;
+      default:
+        return <FrameFence {...fenceSizes} />;
+    }
+  };
 
-    if (fenceSizes.fenceVariant === 'ModelSimple' && fence.fenceModel === 5) {
-      return (
-        <FenceLayoutPdf
-          key={fence.id}
-          image={image}
-          isLeft={fence.isLeft}
-          lengthX={fence.sizeX}
-          lengthY={fence.sizeY}
-          model={fence.fenceModel}
-        >
-          <Fence5 {...fenceSizes} />
-        </FenceLayoutPdf>
-      );
-    }
-
-    if (fenceSizes.fenceVariant === 'ModelSimple') {
-      return (
-        <FenceLayoutPdf
-          key={fence.id}
-          image={image}
-          isLeft={fence.isLeft}
-          lengthX={fence.sizeX}
-          lengthY={fence.sizeY}
-          model={fence.fenceModel}
-        >
-          <SimpleFence {...fenceSizes} />
-        </FenceLayoutPdf>
-      );
-    }
-    if (fenceSizes.fenceVariant === 'Model35') {
-      return (
-        <FenceLayoutPdf
-          key={fence.id}
-          image={image}
-          isLeft={fence.isLeft}
-          lengthX={fence.sizeX}
-          lengthY={fence.sizeY}
-          model={fence.fenceModel}
-        >
-          <Fence35 {...fenceSizes} />
-        </FenceLayoutPdf>
-      );
-    }
-    if (fenceSizes.fenceVariant === 'Model15And25') {
-      return (
-        <FenceLayoutPdf
-          key={fence.id}
-          image={image}
-          isLeft={fence.isLeft}
-          lengthX={fence.sizeX}
-          lengthY={fence.sizeY}
-          model={fence.fenceModel}
-        >
-          <Fence15And25 {...fenceSizes} />
-        </FenceLayoutPdf>
-      );
-    }
+  const renderFence = (fence: FenceValues) => {
+    const { sizeX, sizeY, isLeft, fenceModel, id } = fence;
+    const image = choosingImageForPDF(sizeX, sizeY, isLeft);
+    const fenceSizes = distributionLogic(fenceModel, sizeX, sizeY);
     return (
       <FenceLayoutPdf
-        key={fence.id}
+        key={id}
         image={image}
-        isLeft={fence.isLeft}
-        lengthX={fence.sizeX}
-        lengthY={fence.sizeY}
-        model={fence.fenceModel}
+        isLeft={isLeft}
+        lengthX={sizeX}
+        lengthY={sizeY}
+        model={fenceModel}
       >
-        <FrameFence {...fenceSizes} />
+        {getFenceComponent(fenceSizes, fenceModel)}
       </FenceLayoutPdf>
     );
-  });
+  };
+
+  const fences = fenceValues.map(renderFence);
 
   return <div id="result">{fences}</div>;
 };
