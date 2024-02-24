@@ -1,1 +1,1 @@
-export { LayoutPdf } from './Document/LayoutPdf';
+export { PdfDocument } from './Document/LayoutPdf';

@@ -63,7 +63,13 @@ export const Fence35 = memo(function Fence35(props: Model35Sizes) {
   useInitialDetailListEffect(...allDetails);
 
   return (
-    <HStack className={grandStyles.values} gap="32">
+    <HStack
+      max
+      align="start"
+      className={grandStyles.values}
+      gap="32"
+      justify="end"
+    >
       <VStack gap="8">
         <Heading underline className={grandStyles.heading}>
           {tube} X {tube}

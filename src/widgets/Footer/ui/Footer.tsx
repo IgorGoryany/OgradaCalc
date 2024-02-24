@@ -9,7 +9,7 @@ export const Footer = memo(function Footer() {
   return (
     <footer className={styles.footer}>
       <Container center className={styles.container}>
-        <Text align="right">© {new Date().getFullYear()} ИП "Горяный"</Text>
+        <Text align="right">© {new Date().getFullYear()} ООО "КРОК"</Text>
       </Container>
     </footer>
   );

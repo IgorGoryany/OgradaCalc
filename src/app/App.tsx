@@ -1,10 +1,10 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useState } from 'react';
 
-import { LayoutPdf } from '@/entities/pdf';
+import { PdfDocument } from '@/entities/pdf';
 import { CalcForm } from '@/features/CalcForm';
 import { TotalDetailsList } from '@/features/TotalDetailsList';
 import { cn } from '@/shared/helpers';
-import { useDebounce } from '@/shared/hooks';
+import { useMobile } from '@/shared/hooks/useMobile/useMobile';
 import { BackSVG } from '@/shared/img/RFCIcon/BackSVG';
 import { DownloadSVG } from '@/shared/img/RFCIcon/DownloadSVG';
 import { Button, Container, HStack, Heading } from '@/shared/ui';
@@ -14,7 +14,6 @@ import { Footer } from '@/widgets/Footer';
 import style from './styles/App.module.scss';
 
 const App = () => {
-  const [windowWidth, setWindowWidth] = useState<number>(window.innerWidth);
   const [isPdfVisible, setIsPdfVisible] = useState(false);
   const [isTotalDetailsListVisible, setIsTotalDetailsListVisible] =
     useState(false);
@@ -31,20 +30,7 @@ const App = () => {
     setIsPdfVisible(true);
   }, []);
 
-  const resizeEventHandler = useDebounce((event: UIEvent) => {
-    const target = event?.target as Window;
-    setWindowWidth(target.innerWidth);
-  }, 300);
-
-  useEffect(() => {
-    window.addEventListener('resize', resizeEventHandler);
-
-    return () => {
-      window.removeEventListener('resize', resizeEventHandler);
-    };
-  }, [resizeEventHandler]);
-
-  const isMobile = windowWidth <= 450;
+  const isMobile = useMobile();
 
   if (isPdfVisible) {
     return (
@@ -55,7 +41,7 @@ const App = () => {
           variant="secondGray"
           onClick={onHidePdf}
         />
-        <LayoutPdf />
+        <PdfDocument />
       </Container>
     );
   }

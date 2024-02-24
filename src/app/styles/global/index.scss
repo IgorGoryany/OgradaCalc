@@ -1,6 +1,6 @@
-@import "./app/styles/MU.scss";
-@import "./app/styles/zero.scss";
-@import "./app/styles/media.scss";
+@import "../zero/zero.scss";
+@import "../helpers/MU.scss";
+@import "../helpers/media.scss";
 
 :root {
   --btn-gray-color: #484848;

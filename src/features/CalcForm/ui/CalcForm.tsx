@@ -40,7 +40,7 @@ const options: Options = [
 ];
 
 const inputFunc = (value: string) =>
-  !Number.isNaN(Number(value)) && +value < maxSideLength;
+  !Number.isNaN(Number(value)) && +value <= maxSideLength;
 
 interface CalcFormProps {
   isMobile?: boolean;

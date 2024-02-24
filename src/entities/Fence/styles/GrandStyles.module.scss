@@ -16,10 +16,10 @@
 .values {
   position: relative;
   right: 70px;
-  @media (max-width: 450px) {
-    right: 0;
-    left: 30px;
-  }
+  // @media (max-width: 450px) {
+  //   right: 0;
+  //   left: 30px;
+  // }
 }
 
 .outside {

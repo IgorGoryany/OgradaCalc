@@ -5,7 +5,7 @@ import { FenceContext } from '@/shared/helpers';
 
 import { MyDocument } from './TestDocument';
 
-export const LayoutPdf = () => {
+export const PdfDocument = () => {
   const { fenceValues } = useContext(FenceContext);
 
   return (
