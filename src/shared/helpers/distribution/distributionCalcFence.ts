@@ -82,7 +82,7 @@ export function distributionCalcFence(
   }
 
   if (fenceModel >= 30 && fenceModel <= 40) {
-    return calcLogicToSimpleFence(lengthX, lengthY, 25, 20, 15, isBigX, isBigY);
+    return calcLogicToFrameFence(lengthX, lengthY, 25, 20, isBigX, isBigY);
   }
   return calcLogicToFrameFence(lengthX, lengthY, 50, 25, isBigX, isBigY);
 }
