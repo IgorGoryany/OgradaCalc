@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react';
 
 import { PdfDocument } from '@/entities/pdf';
 import { CalcForm } from '@/features/CalcForm';
+import { LayoutPdfTotalDetailsList } from '@/features/PdfTotalDetailsList/ui/Document/Layout';
 import { TotalDetailsList } from '@/features/TotalDetailsList';
 import { cn } from '@/shared/helpers';
 import { useMobile } from '@/shared/hooks/useMobile/useMobile';
@@ -15,6 +16,7 @@ import style from './styles/App.module.scss';
 
 const App = () => {
   const [isPdfVisible, setIsPdfVisible] = useState(false);
+  const [isPdfTotalVisible, setIsPdfTotalVisible] = useState(false);
   const [isTotalDetailsListVisible, setIsTotalDetailsListVisible] =
     useState(false);
 
@@ -24,6 +26,11 @@ const App = () => {
 
   const onHidePdf = useCallback(() => {
     setIsPdfVisible(false);
+    setIsPdfTotalVisible(false);
+  }, []);
+
+  const onShowTotalDetailsList = useCallback(() => {
+    setIsPdfTotalVisible(true);
   }, []);
 
   const onShowPdf = useCallback(() => {
@@ -32,35 +39,56 @@ const App = () => {
 
   const isMobile = useMobile();
 
-  if (isPdfVisible) {
-    return (
-      <Container center>
-        <Button
-          className={style.pdfButton}
-          rightIcon={<BackSVG className={style.back} />}
-          variant="secondGray"
-          onClick={onHidePdf}
-        />
-        <PdfDocument />
-      </Container>
-    );
-  }
-
   return (
     <>
-      <Container center className={cn(style.container)}>
+      {isPdfVisible && (
+        <Container center>
+          <Button
+            className={style.pdfButton}
+            rightIcon={<BackSVG className={style.back} />}
+            variant="secondGray"
+            onClick={onHidePdf}
+          />
+          <PdfDocument />
+        </Container>
+      )}
+      {isPdfTotalVisible && (
+        <Container center>
+          <Button
+            className={style.pdfButton}
+            rightIcon={<BackSVG className={style.back} />}
+            variant="secondGray"
+            onClick={onHidePdf}
+          />
+          <LayoutPdfTotalDetailsList />
+        </Container>
+      )}
+      <Container
+        center
+        className={cn(style.container, { [style.invisible]: isPdfVisible })}
+      >
         <HStack max align="center" gap="32" justify="between">
           <Heading like="h1" Tag="h1">
             Расчет размера заготовок
           </Heading>
-          <Button
-            className={style.pdfButton}
-            rightIcon={<DownloadSVG />}
-            variant="secondGray"
-            onClick={onShowPdf}
-          >
-            pdf
-          </Button>
+          <HStack align="center" gap="8" justify="end">
+            <Button
+              className={style.pdfButton}
+              rightIcon={<DownloadSVG />}
+              variant="secondGray"
+              onClick={onShowTotalDetailsList}
+            >
+              резать
+            </Button>
+            <Button
+              className={style.pdfButton}
+              rightIcon={<DownloadSVG />}
+              variant="secondGray"
+              onClick={onShowPdf}
+            >
+              варить
+            </Button>
+          </HStack>
         </HStack>
 
         <CalcForm

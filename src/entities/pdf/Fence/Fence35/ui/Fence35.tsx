@@ -53,8 +53,10 @@ export const Fence35 = (props: Model35Sizes) => {
       </View>
 
       <View>
-        <View style={styles.heading}>
-          {tubeInside} X {tubeInside}
+        <View>
+          <Text style={styles.heading}>
+            {tubeInside} X {tubeInside}
+          </Text>
         </View>
         <Text>
           {insideSideY} X {4 * countY * insideSideYCount}
