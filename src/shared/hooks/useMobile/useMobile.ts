@@ -18,7 +18,7 @@ export const useMobile = () => {
     };
   }, [resizeEventHandler]);
 
-  const isMobile = windowWidth <= 450;
+  const isMobile = windowWidth <= 500;
 
   return isMobile;
 };

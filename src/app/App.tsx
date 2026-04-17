@@ -2,12 +2,12 @@ import { useCallback, useState } from 'react';
 
 import { PdfDocument } from '@/entities/pdf';
 import { CalcForm } from '@/features/CalcForm';
+import { PdfActions } from '@/features/PdfActions/PdfActions';
 import { LayoutPdfTotalDetailsList } from '@/features/PdfTotalDetailsList/ui/Document/Layout';
 import { TotalDetailsList } from '@/features/TotalDetailsList';
 import { cn } from '@/shared/helpers';
 import { useMobile } from '@/shared/hooks/useMobile/useMobile';
 import { BackSVG } from '@/shared/img/RFCIcon/BackSVG';
-import { DownloadSVG } from '@/shared/img/RFCIcon/DownloadSVG';
 import { Button, Container, HStack, Heading } from '@/shared/ui';
 import { FenceList } from '@/widgets/FenceList';
 import { Footer } from '@/widgets/Footer';
@@ -71,26 +71,12 @@ const App = () => {
           <Heading like="h1" Tag="h1">
             Расчет размера заготовок
           </Heading>
-          <HStack align="center" gap="8" justify="end">
-            <Button
-              className={style.pdfButton}
-              rightIcon={<DownloadSVG />}
-              variant="secondGray"
-              onClick={onShowTotalDetailsList}
-            >
-              резать
-            </Button>
-            <Button
-              className={style.pdfButton}
-              rightIcon={<DownloadSVG />}
-              variant="secondGray"
-              onClick={onShowPdf}
-            >
-              варить
-            </Button>
-          </HStack>
+          <PdfActions
+            isMobile={isMobile}
+            onShowPdf={onShowPdf}
+            onShowTotalDetailsList={onShowTotalDetailsList}
+          />
         </HStack>
-
         <CalcForm
           isMobile={isMobile}
           isTotalDetailsListVisible={isTotalDetailsListVisible}
