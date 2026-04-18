@@ -65,7 +65,9 @@ const App = () => {
       )}
       <Container
         center
-        className={cn(style.container, { [style.invisible]: isPdfVisible })}
+        className={cn(style.container, {
+          [style.invisible]: isPdfVisible || isPdfTotalVisible,
+        })}
       >
         <HStack max align="center" gap="32" justify="between">
           <Heading like="h1" Tag="h1">
