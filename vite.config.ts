@@ -2,10 +2,10 @@ import path from 'path';
 
 import react from '@vitejs/plugin-react-swc';
 import { defineConfig } from 'vite';
-import type { ManifestOptions} from 'vite-plugin-pwa';
+import type { ManifestOptions } from 'vite-plugin-pwa';
 import { VitePWA } from 'vite-plugin-pwa';
 
-const manifest: Partial<ManifestOptions> | false = {
+const manifest: Partial<ManifestOptions> = {
   theme_color: '#161616',
   background_color: '#161616',
   icons: [
