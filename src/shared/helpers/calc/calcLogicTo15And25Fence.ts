@@ -1,4 +1,5 @@
 import { standardRectangle } from '@/shared/consts';
+import { minStandardRectangle } from '@/shared/consts/standardRectangle';
 
 import { fenceElementsCount } from '../support/fenceElementsCount';
 import { lengthCalc } from '../support/lengthCalc';
@@ -39,6 +40,8 @@ export interface Model15And25Sizes {
   rectangleGateCount: number;
   fenceVariant: 'Model15And25';
 }
+// если не понравится, то выставить в false
+const newLogic = true;
 
 function supportInsideCalcLogic(
   length: number,
@@ -46,36 +49,49 @@ function supportInsideCalcLogic(
   jumper: number,
   standardRectangle: number[],
 ): InsideTube {
-  let jumperLength = Infinity;
+  let jumperLength = newLogic ? jumper : Infinity;
   let rectangleLength = 0;
 
-  for (let i = 0; i < standardRectangle.length; i++) {
-    const jumperValue = (length - tube - standardRectangle[i] * 1.5) / 2;
-    if (
-      Math.abs(jumperValue - jumper) <= Math.abs(jumperLength - jumper) &&
-      jumperValue >= 0
-    ) {
-      jumperLength = jumperValue;
-      rectangleLength = standardRectangle[i];
+  if (!newLogic) {
+    for (let i = 0; i < standardRectangle.length; i++) {
+      const jumperValue = (length - tube - standardRectangle[i] * 1.5) / 2;
+      if (
+        Math.abs(jumperValue - jumper) <= Math.abs(jumperLength - jumper) &&
+        jumperValue >= 0
+      ) {
+        jumperLength = jumperValue;
+        rectangleLength = standardRectangle[i];
+      }
+      if (jumperValue === jumper) {
+        return [
+          rectangleLength,
+          Math.round(jumperLength),
+          1,
+          rectangleLength / 2,
+        ];
+      }
     }
-    if (jumperValue === jumper) {
-      return [
-        rectangleLength,
-        Math.round(jumperLength),
-        1,
-        rectangleLength / 2,
-      ];
+  } else {
+    rectangleLength = (length - tube - 2 * jumper) / 1.5;
+
+    if (rectangleLength < minStandardRectangle) {
+      jumperLength = jumper === 242 ? 210 : 200;
+      rectangleLength = (length - tube - 2 * jumper) / 1.5;
     }
+
+    rectangleLength = Math.round(rectangleLength);
   }
+
   return [rectangleLength, Math.round(jumperLength), 1, rectangleLength / 2];
 }
+
 function insideCalcLogic(
   length: number,
   tube: number,
   jumper: number,
   isBig: boolean,
 ): InsideTube {
-  let jumperLength = Infinity;
+  let jumperLength = newLogic ? jumper : Infinity;
   let rectangleLength = 0;
   let rectangleCount = 2;
 
@@ -91,21 +107,35 @@ function insideCalcLogic(
     rectangleCount = 3;
   }
 
-  for (let i = 0; i < standardRectangle.length; i++) {
-    const jumperValue =
-      (length - tube - standardRectangle[i] * rectangleCount) /
-      (rectangleCount + 1);
-    if (
-      Math.abs(jumperValue - jumper) <= Math.abs(jumperLength - jumper) &&
-      jumperValue >= 0
-    ) {
-      jumperLength = jumperValue;
-      rectangleLength = standardRectangle[i];
+  if (!newLogic) {
+    for (let i = 0; i < standardRectangle.length; i++) {
+      const jumperValue =
+        (length - tube - standardRectangle[i] * rectangleCount) /
+        (rectangleCount + 1);
+      if (
+        Math.abs(jumperValue - jumper) <= Math.abs(jumperLength - jumper) &&
+        jumperValue >= 0
+      ) {
+        jumperLength = jumperValue;
+        rectangleLength = standardRectangle[i];
+      }
+      if (jumperValue === jumper) {
+        return [rectangleLength, Math.round(jumperLength), rectangleCount];
+      }
     }
-    if (jumperValue === jumper) {
-      return [rectangleLength, Math.round(jumperLength), rectangleCount];
+  } else {
+    rectangleLength =
+      (length - tube - (rectangleCount + 1) * jumper) / rectangleCount;
+
+    if (rectangleLength < minStandardRectangle) {
+      jumperLength = jumper === 242 ? 210 : 200;
+      rectangleLength =
+        (length - tube - (rectangleCount + 1) * jumperLength) / rectangleCount;
     }
+
+    rectangleLength = Math.round(rectangleLength);
   }
+
   return [rectangleLength, Math.round(jumperLength), rectangleCount];
 }
 
